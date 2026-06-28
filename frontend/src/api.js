@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: `http://${window.location.hostname}:5000/api`,
+  baseURL: 'https://rural-internship-final.onrender.com/api',
 });
 
 // Add a request interceptor
