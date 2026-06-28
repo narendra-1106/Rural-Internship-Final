@@ -12,7 +12,7 @@ import {
   LogOut 
 } from 'lucide-react';
 
-const Sidebar = () => {
+const Sidebar = ({ closeMobileMenu }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -44,6 +44,7 @@ const Sidebar = () => {
             <li key={item.name}>
               <NavLink
                 to={item.path}
+                onClick={closeMobileMenu}
                 className={({ isActive }) =>
                   `flex items-center px-4 py-3 rounded-md transition-colors ${
                     isActive ? 'bg-primary-700 text-white' : 'text-primary-100 hover:bg-primary-800'
