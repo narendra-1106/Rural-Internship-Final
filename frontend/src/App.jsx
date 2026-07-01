@@ -10,6 +10,7 @@ import Analysis from './pages/Analysis';
 import Announcements from './pages/Announcements';
 import Reports from './pages/Reports';
 import Settings from './pages/Settings';
+import Gallery from './pages/Gallery';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="announcements" element={<Announcements />} />
           <Route path="reports" element={<Reports />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="gallery" element={<Gallery />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />

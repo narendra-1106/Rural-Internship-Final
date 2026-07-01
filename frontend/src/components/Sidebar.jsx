@@ -9,7 +9,8 @@ import {
   Bell, 
   FileText, 
   Settings, 
-  LogOut 
+  LogOut,
+  Image
 } from 'lucide-react';
 
 const Sidebar = ({ closeMobileMenu }) => {
@@ -28,6 +29,7 @@ const Sidebar = ({ closeMobileMenu }) => {
     { name: 'Complaints', path: '/complaints', icon: <AlertTriangle size={20} /> },
     { name: 'Problem Analysis', path: '/analysis', icon: <PieChart size={20} /> },
     { name: 'Announcements', path: '/announcements', icon: <Bell size={20} /> },
+    { name: 'Gallery', path: '/gallery', icon: <Image size={20} /> },
     { name: 'Reports', path: '/reports', icon: <FileText size={20} /> },
     { name: 'Settings', path: '/settings', icon: <Settings size={20} /> },
   ];
