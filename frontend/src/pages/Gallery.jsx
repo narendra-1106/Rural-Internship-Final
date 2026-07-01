@@ -14,6 +14,7 @@ const Gallery = () => {
   });
   const [previewUrl, setPreviewUrl] = useState('');
   const [error, setError] = useState('');
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
 
   useEffect(() => {
     fetchPhotos();
@@ -108,7 +109,10 @@ const Gallery = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {photos.map((photo) => (
             <div key={photo._id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden group">
-              <div className="aspect-w-4 aspect-h-3 bg-gray-100 relative">
+              <div 
+                className="aspect-w-4 aspect-h-3 bg-gray-100 relative cursor-pointer"
+                onClick={() => setSelectedPhoto(photo)}
+              >
                 <img 
                   src={photo.image_data} 
                   alt={photo.title} 
@@ -116,7 +120,7 @@ const Gallery = () => {
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-opacity flex items-center justify-center opacity-0 group-hover:opacity-100">
                   <button 
-                    onClick={() => handleDelete(photo._id)}
+                    onClick={(e) => { e.stopPropagation(); handleDelete(photo._id); }}
                     className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-full transform hover:scale-110 transition-transform"
                     title="Delete Photo"
                   >
@@ -206,6 +210,33 @@ const Gallery = () => {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Fullscreen Photo Modal */}
+      {selectedPhoto && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4"
+          onClick={() => setSelectedPhoto(null)}
+        >
+          <button 
+            onClick={() => setSelectedPhoto(null)} 
+            className="absolute top-4 right-4 text-white hover:text-gray-300 bg-black bg-opacity-50 rounded-full p-2"
+          >
+            <X size={24} />
+          </button>
+          <div className="max-w-5xl w-full max-h-screen flex flex-col items-center justify-center">
+            <img 
+              src={selectedPhoto.image_data} 
+              alt={selectedPhoto.title} 
+              className="max-w-full max-h-[85vh] object-contain rounded-md"
+              onClick={(e) => e.stopPropagation()}
+            />
+            <div className="mt-4 text-center text-white">
+              <h3 className="text-xl font-semibold">{selectedPhoto.title}</h3>
+              {selectedPhoto.description && <p className="mt-2 text-gray-300">{selectedPhoto.description}</p>}
+            </div>
           </div>
         </div>
       )}
